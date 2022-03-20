@@ -15,7 +15,7 @@ namespace ClubeDeLeitura
         public string AnoRevista;
         public string caixaGuardada;
         
-        public void cadastrarRevista(Revista[] Revistas,caixa[] listaDecaixas,ref int n,ref Revista[] arrayRevista,ref int contador)
+        public void cadastrarRevista(Revista[] Revistas,caixa[] listaDecaixas,ref int n,ref Revista[] arrayRevista,ref int contador, CategoriaRevista[] categorias, ref int c)
         { 
            
             string digitado = "";
@@ -28,9 +28,26 @@ namespace ClubeDeLeitura
                 digitado = Console.ReadLine();
                 novaRevista.nomeRevista = digitado;
 
-                Console.WriteLine("Escreva o tipo da Revista");
+                Console.WriteLine("Escreva a categoria da caixa");
                 digitado = Console.ReadLine();
                 novaRevista.tipoDeRevista = digitado;
+                bool criado = false;
+                for (int i = 0; i < c; i++)
+                {
+                    if (categorias[i].nome == digitado)
+                    {
+                        int espaçoVazio = categorias[i].Obterposição();
+                        categorias[i].revistas[espaçoVazio] = novaRevista;
+                        criado = true;
+                        break;
+                    }
+                }
+                if (criado == false)
+                {
+                    Console.WriteLine("Categoria não criada");
+                    continue;
+                }
+                criado = false;
 
                 Console.WriteLine("Escreva o número da edição da Revista");
                 numbers = Convert.ToInt32(Console.ReadLine());
@@ -53,7 +70,7 @@ namespace ClubeDeLeitura
                 Console.WriteLine("Escreva em qual caixa a revista está guardada");
                 digitado = Console.ReadLine();
                 novaRevista.caixaGuardada = digitado;
-                bool criado = false;
+               
                 for (int i = 0; i < n; i++)
                 {
                     if (listaDecaixas[i].numeroCaixa == digitado)

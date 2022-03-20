@@ -12,6 +12,7 @@ namespace ClubeDeLeitura
         public string nomeResponsávelAmigo;
         public int telefoneAmigo;
         public string endereçoAmigo;
+        public int multa = 0;
 
         public void registrarAmigo(ref int b,ref amigo[] arrayAmigo)
         {
@@ -55,6 +56,21 @@ namespace ClubeDeLeitura
 
 
         }
-
+        public void quitarDivida(amigo[] arrayAmigo )
+        {
+            string digitado = "";
+            Console.WriteLine("Escreva o nome do amigo para quitar a divida");
+            digitado = Console.ReadLine();
+            for (int i = 0; i < arrayAmigo.Length; i++)
+            {
+                if (arrayAmigo[i] != null)
+                {
+                    if (arrayAmigo[i].nomeAmigo == digitado)
+                    {
+                        arrayAmigo[i].multa = 0;
+                    }
+                }
+            }
+        }
     }
 }
