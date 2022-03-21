@@ -13,6 +13,7 @@ namespace ClubeDeLeitura
         public int telefoneAmigo;
         public string endereçoAmigo;
         public int multa = 0;
+        
 
         public void registrarAmigo(ref int b,ref amigo[] arrayAmigo)
         {
@@ -39,18 +40,9 @@ namespace ClubeDeLeitura
                 novoAmigo.endereçoAmigo = digitado;
                 arrayAmigo[b] = novoAmigo;
                 b++;
-                Console.WriteLine("Deseja continuar s/n");
-                digitado = Console.ReadLine();
-                if (digitado == "s")
-                {
-                    Console.Clear();
-                    continue;
-                }
-                else
-                {
-                    Console.Clear();
-                    break;
-                }
+                Console.Clear();    
+                Console.WriteLine("Amigo criado!!!!");
+                break;
             }
            
 
@@ -71,6 +63,8 @@ namespace ClubeDeLeitura
                     }
                 }
             }
+            Console.Clear();
+            Console.WriteLine("Divida Quitada");
         }
     }
 }

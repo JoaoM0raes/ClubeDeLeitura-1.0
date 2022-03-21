@@ -14,10 +14,11 @@ namespace ClubeDeLeitura
         public int númeroDaEdição;
         public string AnoRevista;
         public string caixaGuardada;
+        public bool reservado;
         
         public void cadastrarRevista(Revista[] Revistas,caixa[] listaDecaixas,ref int n,ref Revista[] arrayRevista,ref int contador, CategoriaRevista[] categorias, ref int c)
-        { 
-           
+        {
+            int a = 0;
             string digitado = "";
             int numbers = 0;
             

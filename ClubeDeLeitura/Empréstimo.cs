@@ -39,13 +39,14 @@ namespace ClubeDeLeitura
                 }
                 if (amigoRepetido == true)
                 {
+                    Console.Clear();
                     Console.WriteLine("O Amigo só deve realizar Um empréstimo por vez");
-                    continue;
+                    break;
                 }
                 bool amigoExiste = false;
                 for (int i = 0; i < b; i++)
                 {
-                    if (arrayAmigo[i].nomeAmigo == digitado && arrayAmigo[i].multa==0)
+                    if (arrayAmigo[i].nomeAmigo == digitado && arrayAmigo[i].multa== 0 && arrayAmigo[i].multa == 0)
                     {
                         novoEmprestimo.nomeAmigo = digitado;
                         amigoExiste = true;
@@ -53,8 +54,9 @@ namespace ClubeDeLeitura
                 }
                 if (amigoExiste == false)
                 {
+                    Console.Clear();
                     Console.WriteLine("Nome de amigo ainda não adicionado Ou Ele está Devendo");
-                    continue;
+                     break;
 
                 }
                 amigoExiste = false;
@@ -65,7 +67,7 @@ namespace ClubeDeLeitura
                 bool revistaExiste = false;
                 for (int i = 0; i < contador; i++)
                 {
-                    if (arrayRevista[i].nomeRevista == digitado)
+                    if (arrayRevista[i].nomeRevista == digitado && arrayRevista[i].reservado==false)
                     {
                         novoEmprestimo.nomeRevista = digitado;
                         revistaExiste = true;
@@ -74,8 +76,8 @@ namespace ClubeDeLeitura
                 if (revistaExiste == false)
                 {
                     Console.Clear();
-                    Console.WriteLine("Nome da revista iválido");
-                    continue;
+                    Console.WriteLine("Nome da revista iválido Ou Revista já reservada");
+                    break;
                 }
                 int days = 0;
                 for (int i = 0; i < c; i++)
@@ -94,20 +96,11 @@ namespace ClubeDeLeitura
                     }                
                 }
                 revistaExiste = false;
-                
 
-                Console.WriteLine("Escreva a data de empréstimo MM/dd/AAAA");
-                digitado = Console.ReadLine();
-                DateTime temp;
-                if (DateTime.TryParse(digitado, out temp))
-                {
-                    novoEmprestimo.dataDeEmprestimo = temp;
-                }
-                else
-                {
-                    Console.WriteLine("Favor digitar um data válida");
-                    continue;
-                }
+
+                DateTime temp = DateTime.Now;
+                novoEmprestimo.dataDeEmprestimo = DateTime.Now; 
+               
 
 
                 novoEmprestimo.dataDeDevolução = temp.AddDays(days);
@@ -117,18 +110,9 @@ namespace ClubeDeLeitura
 
                 arrayEmpréstimo[emprestados] = novoEmprestimo;
                 emprestados++;
+                Console.WriteLine("Empréstimo criado!!!");
+                break;
 
-
-                Console.WriteLine("Deseja continuar s/n");
-                digitado = Console.ReadLine();
-                if (digitado == "s")
-                {
-                    continue;
-                }
-                else
-                {
-                    break;
-                }
             }
            
             
@@ -188,23 +172,15 @@ namespace ClubeDeLeitura
                         }
                     }
                 }
-                Console.WriteLine("Deseja continuar s/n");
-                digitado = Console.ReadLine();
-                if (digitado == "s")
-                {
-                    Console.Clear();
-                    continue;
-                }
-                else
-                {
-                    Console.Clear();
-                    break;
-                }
+                Console.WriteLine("Empréstimo fechado!!!");
+                break;
+             
 
 
 
             }
            
         }
+        
     }
 }

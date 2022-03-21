@@ -12,6 +12,7 @@ namespace ClubeDeLeitura
             Revista[] ArrayRevistas = new Revista[100];
             amigo[] arrayAmigo = new amigo[100];
             Empréstimo[] arrayEmprestimos = new Empréstimo[100];
+            Reserva[] arrayReserva = new Reserva[100];
 
             int i = 0;
             int b = 0;
@@ -19,6 +20,7 @@ namespace ClubeDeLeitura
             string digitado = "";
             int contador = 0;
             int emprestados = 0;
+            DateTime dataAtual = DateTime.Now;
 
             while (true)
             {
@@ -38,6 +40,11 @@ namespace ClubeDeLeitura
                     Console.Clear();
                     mostrarCaixas(ref caixas, novaCaixa, ref i);
                 }
+                if (digitado == "2")
+                {
+                    CategoriaRevista novaCategoria = new CategoriaRevista();
+                    novaCategoria.cadastrarCategoria( ArrayCategoria, ref  c);
+                }
                 if (digitado == "3")
                 {
                     Console.Clear();
@@ -53,10 +60,11 @@ namespace ClubeDeLeitura
                     Console.Clear();
                     mostrarEmpréstimos(arrayEmprestimos, arrayAmigo, ArrayRevistas, ref b, ref contador, ref arrayEmprestimos, ref emprestados, ArrayCategoria, ref c);    
                 }
-                if (digitado == "2")
+                if(digitado == "6")
                 {
-                    CategoriaRevista novaCategoria = new CategoriaRevista();
-                    novaCategoria.cadastrarCategoria( ArrayCategoria, ref  c);
+                    Console.Clear();
+                    Reserva novaReserva= new Reserva();
+                    novaReserva.reservarRevista(arrayReserva, arrayAmigo, ArrayRevistas,  ref b, ref contador, ref arrayEmprestimos, ref emprestados, ArrayCategoria, ref c);
                 }
             }
         }
@@ -67,10 +75,11 @@ namespace ClubeDeLeitura
                 Console.WriteLine("Escreva 3 para adicionar uma revista");
                 Console.WriteLine("Escreva 4 para acessar amigos");
                 Console.WriteLine("Escreva 5 para acessar empréstimos");
-               
-                
+                Console.WriteLine("Escreva 6 para reservar uma revista");
 
-                Console.WriteLine("Digite S para sair ");
+
+
+            Console.WriteLine("Digite S para sair ");
         }
         public static void mostrarCaixas(ref caixa[] caixas, caixa novaCaixa,ref int i)
         {
@@ -133,18 +142,7 @@ namespace ClubeDeLeitura
                     Empréstimo empréstimo = new Empréstimo();
                     empréstimo.terminarEmpéstimo(ArrayEmpréstimo,ref emprestados,arrayAmigo);
                 }
-                Console.WriteLine("Deseja continuar s/n");
-                digitado = Console.ReadLine();
-                if (digitado == "s")
-                {
-                    Console.Clear();
-                    continue;
-                }
-                else
-                {
-                    Console.Clear();
-                    break;
-                }
+                break;
             }
            
         }
@@ -234,18 +232,7 @@ namespace ClubeDeLeitura
                     amigo novoAmigo = new amigo();
                     novoAmigo.quitarDivida(arrayAmigo);
                 }
-                Console.WriteLine("Deseja continuar s/n");
-                digitado = Console.ReadLine();
-                if (digitado == "s")
-                {
-                    Console.Clear();
-                    continue;
-                }
-                else
-                {
-                    Console.Clear();
-                    break;
-                }
+                break;
             }
           
         }
